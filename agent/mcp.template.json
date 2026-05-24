@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest", "--headless"]
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "YOUR_CONTEXT7_API_KEY"
+      },
+      "enabled": true
+    },
+    "UnityMCP": {
+      "type": "http",
+      "url": "http://127.0.0.1:8080/mcp",
+      "enabled": true,
+      "directTools": false
+    }
+  }
+}

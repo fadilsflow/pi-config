@@ -1,0 +1,16 @@
+{
+  "provider": "exa",
+  "summaryModel": "opencode-go/deepseek-v4-flash",
+  "workflow": "none",
+  "curatorTimeoutSeconds": 20,
+  "githubClone": {
+    "enabled": true,
+    "maxRepoSizeMB": 350,
+    "cloneTimeoutSeconds": 30,
+    "clonePath": "/tmp/pi-github-repos"
+  },
+  "shortcuts": {
+    "curate": "ctrl+shift+s",
+    "activity": "ctrl+shift+w"
+  }
+}

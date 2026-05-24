@@ -1,0 +1,9 @@
+{
+  "opencode-go": {
+    "type": "api_key",
+    "key": "YOUR_OPENCODE_API_KEY"
+  },
+  "openai-codex": {
+    "type": "oauth"
+  }
+}

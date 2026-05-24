@@ -1,0 +1,32 @@
+# ============================================================
+# PI CONFIG - SENSITIVE / RUNTIME FILES (JANGAN DI-COMMIT)
+# ============================================================
+
+# API Keys & Auth
+agent/auth.json
+agent/mcp.json
+
+# Runtime Cache
+agent/mcp-cache.json
+agent/mcp-npx-cache.json
+agent/run-history.jsonl
+
+# Session logs & artifacts
+agent/sessions/
+agent/omp-session-*.html
+agent/*.png
+agent/*.jpg
+agent/*.webp
+
+# Intercom (runtime socket/pid)
+agent/intercom/
+
+# Binary
+agent/bin/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
