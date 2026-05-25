@@ -9,7 +9,6 @@ description: >
   service management, scripting deployments, or wants to interact with their project's
   services from the terminal.
 ---
-
 # CLI Detector
 
 Analyze a repository to identify every external SaaS service it integrates with, then
@@ -49,7 +48,9 @@ platform* (not just a protocol or library), it is an external service.
 Read dependency files for SDK packages from known service vendors.
 
 | Ecosystem | Files |
-|-----------|-------|
+|
+---
+--------|-------|
 | Node.js / TypeScript | `package.json` |
 | Python | `pyproject.toml`, `requirements.txt`, `setup.py`, `Pipfile` |
 | Go | `go.mod` |

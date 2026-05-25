@@ -2,7 +2,6 @@
 name: session-reader
 description: Efficiently read and analyze pi agent session JSONL files. Use when asked to "read a session", "review a session", "analyze a session", "what happened in this session", "load session", "parse session", "session history", "go through sessions", or given a .jsonl session file path.
 ---
-
 # Read Pi Sessions
 
 Parse pi session JSONL files into readable output. Sessions live in `~/.pi/agent/sessions/<project>/` as `.jsonl` files.
@@ -49,7 +48,9 @@ uv run ${CLAUDE_SKILL_ROOT}/scripts/read_session.py <path> --mode turn --turn 7
 ## Mode Reference
 
 | Mode | Shows | Use for |
-|------|-------|---------|
+|
+---
+---|-------|---------|
 | `conversation` | User + assistant text only (default) | Reading what happened |
 | `toc` | Numbered exchange list | Navigation, finding the right turn |
 | `turn` | Full detail for one exchange | Drilling into specifics |
