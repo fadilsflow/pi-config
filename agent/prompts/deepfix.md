@@ -1,7 +1,5 @@
 ---
 description: Root-cause debug and fix a difficult issue
-model: openai-codex/gpt-5.5
-thinking: high
 restore: true
 ---
 

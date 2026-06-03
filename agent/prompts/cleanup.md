@@ -1,7 +1,5 @@
 ---
 description: Clean up current diff for simplicity and slop
-model: openai-codex/gpt-5.5
-thinking: medium
 restore: true
 ---
 

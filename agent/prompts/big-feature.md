@@ -1,7 +1,5 @@
 ---
 description: "Full big-feature workflow: context -> plan/oracle -> worker -> reviewers"
-model: openai-codex/gpt-5.5
-thinking: high
 restore: true
 ---
 

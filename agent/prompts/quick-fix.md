@@ -1,7 +1,5 @@
 ---
 description: ⚡ Fix cepat pakai model flash (murah & cepat)
-model: opencode-go/deepseek-v4-flash
-thinking: low
 restore: true
 ---
 Fix issue/kode berikut dengan cara paling sederhana dan minimal:

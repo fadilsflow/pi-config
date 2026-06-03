@@ -1,7 +1,5 @@
 ---
 description: Jelaskan kode yang lagi dibaca
-model: opencode-go/qwen3.6-plus
-thinking: low
 restore: true
 ---
 

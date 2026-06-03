@@ -1,7 +1,5 @@
 ---
 description: Review current git diff like a PR reviewer
-model: opencode-go/deepseek-v4-flash
-thinking: low
 restore: true
 ---
 

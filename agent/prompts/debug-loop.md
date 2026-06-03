@@ -1,7 +1,5 @@
 ---
 description: Orchestrated debugging workflow with scout, fix, and review
-model: openai-codex/gpt-5.5
-thinking: high
 restore: true
 ---
 

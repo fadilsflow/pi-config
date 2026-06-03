@@ -1,7 +1,5 @@
 ---
 description: Implement, verify, and summarize a task end-to-end
-model: openai-codex/gpt-5.5
-thinking: medium
 restore: true
 ---
 

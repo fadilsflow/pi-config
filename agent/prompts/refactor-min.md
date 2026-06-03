@@ -1,7 +1,5 @@
 ---
 description: Minimal safe refactor without behavior changes
-model: openai-codex/gpt-5.5
-thinking: medium
 restore: true
 ---
 

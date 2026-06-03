@@ -1,9 +1,8 @@
 ---
 description: Debug halaman web dengan Chrome DevTools + screenshot
-model: claude-sonnet-4-20250514
-skill: surf
 restore: true
 ---
+
 Buka URL `$1` dan lakukan debugging:
 
 1. Navigasi ke URL tersebut

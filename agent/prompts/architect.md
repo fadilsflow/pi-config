@@ -1,7 +1,5 @@
 ---
 description: Design a technical approach before implementation
-model: freemodel/claude-opus-4-7
-thinking: high
 restore: true
 ---
 

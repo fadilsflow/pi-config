@@ -146,6 +146,7 @@ export default function (pi: ExtensionAPI) {
 	let rules: DamageControlRules = mergeRules();
 	const recentEvents: BlockEvent[] = [];
 	const MAX_RECENT = 20;
+	let enabled = false;
 
 	function recordEvent(evt: BlockEvent) {
 		recentEvents.unshift(evt);
@@ -281,24 +282,26 @@ export default function (pi: ExtensionAPI) {
 		return false;
 	}
 
+	function updateStatus(ctx: ExtensionContext): void {
+		if (enabled) {
+			ctx.ui.setStatus("damage-control", ctx.ui.theme.fg("success", "DC"));
+		} else {
+			ctx.ui.setStatus("damage-control", undefined);
+		}
+	}
+
 	// -- Load rules on session start ------------------------------------------
 
 	pi.on("session_start", async (_event, ctx) => {
 		loadAllRules(ctx.cwd);
-		const total =
-			rules.bashToolPatterns.length +
-			rules.zeroAccessPaths.length +
-			rules.askAccessPaths.length +
-			rules.readOnlyPaths.length +
-			rules.noDeletePaths.length;
-		if (total > 0) {
-			ctx.ui.setStatus("damage-control", ctx.ui.theme.fg("success", "DC"));
-		}
+		updateStatus(ctx);
 	});
 
 	// -- Intercept tool calls -------------------------------------------------
 
 	pi.on("tool_call", async (event, ctx): Promise<ToolCallEventResult | undefined> => {
+		if (!enabled) return;
+
 		// --- Bash commands ---
 		if (isToolCallEventType("bash", event)) {
 			const cmd = event.input.command;
@@ -488,12 +491,36 @@ export default function (pi: ExtensionAPI) {
 	// -- /dc command ----------------------------------------------------------
 
 	pi.registerCommand("dc", {
-		description: "Show damage control status and rules",
+		description: "Show/toggle damage control safety rules",
 		handler: async (args, ctx) => {
 			// Reload rules in case the YAML was edited
 			loadAllRules(ctx.cwd);
 
-			if (args?.trim() === "rules") {
+			const arg = args?.trim();
+
+			if (arg === "on" || arg === "enable") {
+				if (enabled) {
+					ctx.ui.notify("Damage control is already enabled.", "info");
+					return;
+				}
+				enabled = true;
+				updateStatus(ctx);
+				ctx.ui.notify("Damage control enabled. All safety rules are now active.", "success");
+				return;
+			}
+
+			if (arg === "off" || arg === "disable") {
+				if (!enabled) {
+					ctx.ui.notify("Damage control is already disabled.", "info");
+					return;
+				}
+				enabled = false;
+				updateStatus(ctx);
+				ctx.ui.notify("Damage control disabled. Full YOLO mode.", "info");
+				return;
+			}
+
+			if (arg === "rules") {
 				const lines: string[] = [];
 				lines.push("--- Bash patterns ---");
 				for (const bp of rules.bashToolPatterns) {
@@ -518,6 +545,8 @@ export default function (pi: ExtensionAPI) {
 			}
 
 			const lines: string[] = [];
+			lines.push(`Status:            ${enabled ? ctx.ui.theme.fg("success", "ENABLED") : ctx.ui.theme.fg("dim", "DISABLED")}`);
+			lines.push(`Usage:             /dc on|off  to toggle,  /dc rules  to list`);
 			const allowCount = rules.bashToolPatterns.filter((r) => r.allow).length;
 			const askCount = rules.bashToolPatterns.filter((r) => !r.allow && r.ask).length;
 			const blockCount = rules.bashToolPatterns.filter((r) => !r.allow && !r.ask).length;

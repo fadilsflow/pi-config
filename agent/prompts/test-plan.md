@@ -1,7 +1,5 @@
 ---
 description: Create a focused validation and testing strategy
-model: opencode-go/qwen3.6-plus
-thinking: medium
 restore: true
 ---
 

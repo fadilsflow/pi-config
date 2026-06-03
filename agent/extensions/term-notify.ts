@@ -1,10 +1,9 @@
 /**
  * Terminal Notify Extension
  *
- * Sends a desktop notification when the agent finishes a turn. Uses cmux
- * native notifications with a visual flash when available, and falls back
- * to OSC 777 (Ghostty, iTerm2, WezTerm) otherwise. Includes a preview of
- * the last assistant message in the notification body.
+ * Sends a desktop notification when the agent finishes a turn.
+ * Supports: cmux native, iTerm2 (OSC 9), Ghostty/WezTerm (OSC 777).
+ * Includes a preview of the last assistant message in the notification body.
  */
 
 import { basename } from "node:path";
@@ -20,10 +19,20 @@ function runCmux(args: string[]): void {
 	});
 }
 
-function notifyOsc777(title: string, body: string): void {
-	// OSC 777 format: ESC ] 777 ; notify ; title ; body BEL
-	// Supported by Ghostty, iTerm2, WezTerm, rxvt-unicode
-	process.stdout.write(`\x1b]777;notify;${title};${body}\x07`);
+function notifyMacOS(title: string, body: string): void {
+	// Most reliable method for macOS - uses Notification Center directly
+	execFile("osascript", ["-e", `display notification "${body}" with title "${title}" subtitle "Pi Agent" sound name "default"`], () => {});
+}
+
+function notifyTerminal(title: string, body: string): void {
+	const termProgram = process.env.TERM_PROGRAM || "";
+	if (termProgram === "iTerm.app") {
+		// iTerm2 uses OSC 9 for Notification Center notifications
+		process.stdout.write(`\x1b]9;Pi: ${title} - ${body}\x07`);
+	} else {
+		// Ghostty, WezTerm, rxvt-unicode use OSC 777
+		process.stdout.write(`\x1b]777;notify;${title};${body}\x07`);
+	}
 }
 
 function isCmuxAvailable(): boolean {
@@ -140,7 +149,6 @@ export default function termNotifyExtension(pi: ExtensionAPI) {
 		const notification = await buildNotification(ctx.cwd, event.messages);
 
 		if (isCmuxAvailable()) {
-			// cmux: native notification + visual flash
 			runCmux([
 				"notify",
 				"--title",
@@ -152,8 +160,8 @@ export default function termNotifyExtension(pi: ExtensionAPI) {
 			]);
 			runCmux(["trigger-flash"]);
 		} else {
-			// Fallback: OSC 777 for Ghostty, iTerm2, WezTerm
-			notifyOsc777(notification.title, notification.body);
+			notifyTerminal(notification.title, notification.body);
+			notifyMacOS(notification.title, notification.body);
 		}
 	});
 }

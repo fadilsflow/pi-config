@@ -1,7 +1,5 @@
 ---
 description: Learn a codebase, module, or workflow and summarize patterns
-model: opencode-go/qwen3.6-plus
-thinking: medium
 restore: true
 ---
 

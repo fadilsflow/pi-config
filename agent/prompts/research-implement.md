@@ -1,7 +1,5 @@
 ---
 description: Research plus local scout, then implement and review
-model: openai-codex/gpt-5.5
-thinking: high
 restore: true
 ---
 

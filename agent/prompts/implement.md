@@ -1,7 +1,5 @@
 ---
 description: "Orchestrated implementation workflow: scout -> worker -> reviewer"
-model: openai-codex/gpt-5.5
-thinking: medium
 restore: true
 ---
 

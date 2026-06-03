@@ -1,7 +1,5 @@
 ---
 description: Clean current diff, then run review
-model: openai-codex/gpt-5.5
-thinking: medium
 restore: true
 ---
 

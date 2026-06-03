@@ -1,7 +1,5 @@
 ---
 description: Fast codebase reconnaissance without editing
-model: opencode-go/qwen3.6-plus
-thinking: low
 restore: true
 ---
 

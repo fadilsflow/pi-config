@@ -11,11 +11,11 @@ type Rgb = [number, number, number];
 
 // Soft blue-teal palette — subtle, professional
 const PALETTE: Rgb[] = [
-  [56, 139, 253],  // blue-500
-  [14, 165, 233],  // sky-500
-  [6, 182, 212],   // cyan-500
-  [14, 165, 233],  // sky-500
-  [56, 139, 253],  // blue-500
+  [56, 139, 253], // blue-500
+  [14, 165, 233], // sky-500
+  [6, 182, 212], // cyan-500
+  [14, 165, 233], // sky-500
+  [56, 139, 253], // blue-500
 ];
 
 function mix(a: number, b: number, t: number) {
@@ -88,7 +88,11 @@ function renderBoxHeader(width: number, phase: number, modelId: string) {
   const piTag = ">_  Pi";
 
   // Content area width between "│ " and " │"
-  const contentLen = Math.max(visibleLen(piTag), visibleLen(modelLine), visibleLen(dirLine));
+  const contentLen = Math.max(
+    visibleLen(piTag),
+    visibleLen(modelLine),
+    visibleLen(dirLine),
+  );
   const inner = contentLen;
   // Total box width between corner chars
   const boxWidth = inner + 4;

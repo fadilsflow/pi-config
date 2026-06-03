@@ -1,44 +1,16 @@
 {
-  "lastChangelogVersion": "0.75.5",
-  "defaultProvider": "opencode-go",
-  "defaultModel": "kimi-k2.6",
+  "lastChangelogVersion": "0.78.0",
+  "defaultProvider": "opencode",
+  "defaultModel": "deepseek-v4-flash-free",
   "terminal": {
-    "showTerminalProgress": false
+    "showTerminalProgress": true
   },
   "collapseChangelog": false,
-  "defaultThinkingLevel": "off",
+  "defaultThinkingLevel": "high",
   "editorPaddingX": 0,
   "compaction": {
     "enabled": true
   },
-  "enabledModels": [
-    "opencode-go/glm-5",
-    "opencode-go/glm-5.1",
-    "opencode-go/kimi-k2.5",
-    "opencode-go/kimi-k2.6",
-    "opencode-go/minimax-m2.5",
-    "opencode-go/minimax-m2.7",
-    "opencode-go/qwen3.5-plus",
-    "opencode-go/qwen3.6-plus",
-    "opencode-go/deepseek-v4-flash",
-    "opencode-go/deepseek-v4-pro",
-    "opencode-go/mimo-v2.5",
-    "opencode/deepseek-v4-flash-free",
-    "opencode/nemotron-3-super-free",
-    "openrouter/openrouter/free",
-    "openrouter/z-ai/glm-4.5-air:free",
-    "openrouter/deepseek/deepseek-v4-flash:free",
-    "openai-codex/gpt-5.4",
-    "openai-codex/gpt-5.5",
-    "openai-codex/gpt-5.4-mini",
-    "anthropic/claude-sonnet-4-6",
-    "freemodel/claude-opus-4-7",
-    "freemodel/claude-opus-4-6",
-    "freemodel/claude-sonnet-4-6",
-    "freemodel/claude-haiku-4-5-20251001",
-    "openrouter/x-ai/grok-4.20",
-    "openrouter/x-ai/grok-4.3"
-  ],
   "npmCommand": [
     "bun"
   ],
@@ -51,10 +23,12 @@
     "npm:pi-intercom",
     "npm:@juicesharp/rpiv-btw"
   ],
-  "quietStartup": true,
+  "quietStartup": false,
   "warnings": {
     "anthropicExtraUsage": true
   },
-  "theme": "github-dark-default",
-  "hideThinkingBlock": false
+  "theme": "zen-dark",
+  "hideThinkingBlock": false,
+  "enabledModels": [],
+  "treeFilterMode": "default"
 }
