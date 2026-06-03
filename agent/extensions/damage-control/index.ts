@@ -2,11 +2,11 @@
  * Damage Control Extension
  *
  * Real-time safety auditing that intercepts dangerous bash patterns and
- * enforces path-based access controls. Rules are loaded from YAML config.
+ * enforces path-based access controls. Rules are loaded from JSON config.
  *
  * Config locations (merged, project-local extends global):
- *   ~/.pi/agent/damage-control-rules.yaml  (global)
- *   .pi/damage-control-rules.yaml          (project-local)
+ *   ~/.pi/agent/damage-control-rules.json  (global)
+ *   .pi/damage-control-rules.json          (project-local)
  *
  * Commands:
  *   /dc       - Show loaded rule counts and last block/ask events
@@ -18,7 +18,6 @@ import { isToolCallEventType } from "@earendil-works/pi-coding-agent";
 import { readFileSync, existsSync } from "node:fs";
 import { resolve, basename } from "node:path";
 import { homedir } from "node:os";
-import { parse as parseYaml } from "yaml";
 
 // -- Types ------------------------------------------------------------------
 
@@ -98,7 +97,7 @@ function loadRulesFile(path: string): Partial<DamageControlRules> | null {
 	if (!existsSync(path)) return null;
 	try {
 		const content = readFileSync(path, "utf-8");
-		return parseYaml(content) as Partial<DamageControlRules>;
+		return JSON.parse(content) as Partial<DamageControlRules>;
 	} catch {
 		return null;
 	}
@@ -154,8 +153,8 @@ export default function (pi: ExtensionAPI) {
 	}
 
 	function loadAllRules(cwd: string) {
-		const globalPath = resolve(HOME, ".pi/agent/damage-control-rules.yaml");
-		const projectPath = resolve(cwd, ".pi/damage-control-rules.yaml");
+		const globalPath = resolve(HOME, ".pi/agent/damage-control-rules.json");
+		const projectPath = resolve(cwd, ".pi/damage-control-rules.json");
 
 		const globalRules = loadRulesFile(globalPath);
 		const projectRules = loadRulesFile(projectPath);
@@ -493,7 +492,7 @@ export default function (pi: ExtensionAPI) {
 	pi.registerCommand("dc", {
 		description: "Show/toggle damage control safety rules",
 		handler: async (args, ctx) => {
-			// Reload rules in case the YAML was edited
+			// Reload rules in case the JSON was edited
 			loadAllRules(ctx.cwd);
 
 			const arg = args?.trim();

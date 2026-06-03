@@ -16,18 +16,13 @@
   ],
   "packages": [
     "npm:pi-web-access",
-    "npm:pi-mcp-adapter",
-    "npm:@devkade/pi-plan",
-    "npm:pi-prompt-template-model",
-    "npm:pi-subagents",
-    "npm:pi-intercom",
-    "npm:@juicesharp/rpiv-btw"
+    "npm:pi-prompt-template-model"
   ],
   "quietStartup": false,
   "warnings": {
     "anthropicExtraUsage": true
   },
-  "theme": "zen-dark",
+  "theme": "github-dark-default",
   "hideThinkingBlock": false,
   "enabledModels": [],
   "treeFilterMode": "default"
