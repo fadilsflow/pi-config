@@ -5,6 +5,7 @@
 # API Keys & Auth
 agent/auth.json
 agent/mcp.json
+agent/codex-accounts.json
 
 # Runtime Cache
 agent/mcp-cache.json

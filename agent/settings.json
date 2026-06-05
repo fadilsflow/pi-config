@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.78.0",
+  "lastChangelogVersion": "0.78.1",
   "defaultProvider": "opencode",
   "defaultModel": "deepseek-v4-flash-free",
   "terminal": {
@@ -16,13 +16,18 @@
   ],
   "packages": [
     "npm:pi-web-access",
-    "npm:pi-prompt-template-model"
+    "npm:pi-prompt-template-model",
+    "npm:pi-lean-ctx",
+    "npm:pi-provider-kiro",
+    "npm:pi-codex-goal",
+    "npm:pi-codex-account",
+    "npm:pi-mcp-adapter"
   ],
-  "quietStartup": false,
+  "quietStartup": true,
   "warnings": {
     "anthropicExtraUsage": true
   },
-  "theme": "github-dark-default",
+  "theme": "github-light-default",
   "hideThinkingBlock": false,
   "enabledModels": [],
   "treeFilterMode": "default"
