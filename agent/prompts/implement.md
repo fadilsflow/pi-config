@@ -1,26 +1,21 @@
 ---
-description: "Orchestrated implementation workflow: scout -> worker -> reviewer"
-restore: true
+description: YOLO implement, verify, summarize
 ---
 
-Use subagents to implement this task with a scout -> worker -> reviewer workflow:
+Implement this task end-to-end.
 
+Task:
 $@
 
-Required flow:
-1. Launch `scout` to inspect the codebase and identify relevant files, conventions, risks, and validation commands. Scout must not edit.
-2. Launch `worker` with the scout findings and the original task. Worker may edit only the necessary files.
-3. Launch `reviewer` to inspect the resulting diff for correctness, regressions, tests, and simplicity. Reviewer must not edit.
-4. Apply any fixes that are clearly necessary, then run focused verification.
-
 Rules:
-- Keep changes minimal.
-- Do not commit or push.
-- Stop and ask if requirements are ambiguous enough to affect implementation.
+- inspect relevant files first
+- make the smallest correct local change
+- do not ask for routine edits/tests/builds
+- do not commit/push or touch secrets/prod/destructive ops without explicit approval
+- run focused validation when practical
 
-Final output:
-- scout summary
+Return:
 - changed files
-- reviewer findings addressed/deferred
-- verification commands/results
-- risks or remaining gaps
+- summary
+- validation
+- risks

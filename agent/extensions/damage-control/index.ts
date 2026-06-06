@@ -62,11 +62,12 @@ function expandHome(p: string): string {
  */
 function pathMatches(filePath: string, pattern: string): boolean {
 	const expanded = expandHome(pattern);
+	const target = expandHome(filePath);
 
 	// Directory rule: match the directory itself or anything beneath it
 	if (expanded.endsWith("/")) {
 		const dir = expanded.replace(/\/+$/, "");
-		const norm = filePath.startsWith("/") ? filePath : resolve(filePath);
+		const norm = target.startsWith("/") ? target : resolve(target);
 		return (
 			norm === dir ||
 			norm === `${dir}/` ||
@@ -82,14 +83,14 @@ function pathMatches(filePath: string, pattern: string): boolean {
 			.replace(/[.+^${}()|[\]\\]/g, "\\$&")
 			.replace(/\*/g, ".*");
 		const regex = new RegExp(`(^|/)${regexStr}$`);
-		const norm = filePath.startsWith("/") ? filePath : resolve(filePath);
+		const norm = target.startsWith("/") ? target : resolve(target);
 		// Match against full path and also just the basename
-		return regex.test(norm) || regex.test(basename(filePath));
+		return regex.test(norm) || regex.test(basename(target));
 	}
 
 	// Exact match against basename or full path
-	const norm = filePath.startsWith("/") ? filePath : resolve(filePath);
-	const name = basename(filePath);
+	const norm = target.startsWith("/") ? target : resolve(target);
+	const name = basename(target);
 	return name === expanded || norm === expanded || norm.endsWith("/" + expanded);
 }
 

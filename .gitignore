@@ -25,6 +25,10 @@ agent/intercom/
 # Binary
 agent/bin/
 
+# Local extension cache / clones (not user config)
+agent/tmp/
+agent/pi-studio/
+
 # OS files
 .DS_Store
 Thumbs.db

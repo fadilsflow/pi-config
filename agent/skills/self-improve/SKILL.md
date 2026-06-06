@@ -3,6 +3,7 @@ name: self-improve
 description: End-of-session retrospective that identifies improvements to agent config, tests, docs, and code. Use when asked to "self-improve", "reflect on session", "what can we improve", "session retrospective", "end of session review". Creates actionable todos from findings.
 disable-model-invocation: true
 ---
+
 # Self-Improve
 
 Reflect on the current session, identify concrete improvements, present them for approval, then create todos and execute.
@@ -17,27 +18,27 @@ Only use the `session-reader` skill if you need to review a subagent's session t
 
 Examine each area below. Skip areas with no findings — only report what's actionable.
 
-| Area | What to Look For |
-|------|-----------------|
-| **Agent config** | Could AGENTS.md instructions be clearer? Did the agent misunderstand something that better wording would prevent? |
+| Area                  | What to Look For                                                                                                             |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **Agent config**      | Could AGENTS.md instructions be clearer? Did the agent misunderstand something that better wording would prevent?            |
 | **Subagent behavior** | Did subagents struggle, go off-scope, or need repeated correction? Would better task descriptions or agent definitions help? |
-| **Agent definitions** | Check `~/.pi/agent/agents/*.md` — are model choices, skills, or system prompts optimal for what was observed? |
-| **Tests** | Were bugs found that tests should catch? Are existing tests stale or missing coverage for touched code? |
-| **Documentation** | Are READMEs, inline docs, or references out of date after changes made this session? |
-| **Scripts** | Did any scripts fail, produce wrong output, or need manual workarounds? |
-| **Extensions & MCP** | Were MCP servers or extensions used that could be better configured? Were tools missing that would have helped? |
-| **Skills** | Did any skill produce suboptimal results? Are trigger descriptions accurate? Would a new skill help? |
-| **Code quality** | Did the session reveal patterns worth refactoring, error handling gaps, or repeated boilerplate? |
-| **Workflow** | Were there unnecessary back-and-forth cycles, wasted API calls, or inefficient tool usage patterns? |
+| **Agent definitions** | Check `~/.pi/agent/agents/*.md` — are model choices, skills, or system prompts optimal for what was observed?                |
+| **Tests**             | Were bugs found that tests should catch? Are existing tests stale or missing coverage for touched code?                      |
+| **Documentation**     | Are READMEs, inline docs, or references out of date after changes made this session?                                         |
+| **Scripts**           | Did any scripts fail, produce wrong output, or need manual workarounds?                                                      |
+| **Extensions & MCP**  | Were MCP servers or extensions used that could be better configured? Were tools missing that would have helped?              |
+| **Skills**            | Did any skill produce suboptimal results? Are trigger descriptions accurate? Would a new skill help?                         |
+| **Code quality**      | Did the session reveal patterns worth refactoring, error handling gaps, or repeated boilerplate?                             |
+| **Workflow**          | Were there unnecessary back-and-forth cycles, wasted API calls, or inefficient tool usage patterns?                          |
 
 ## Step 3: Determine Scope
 
 For each finding, classify its scope:
 
-| Scope | Where It Lives | Example |
-|-------|---------------|---------|
-| **Global** | `~/.pi/agent/` (AGENTS.md, skills, agents) | "Subagent worker should always run tests before committing" |
-| **Project** | Project's `.claude/`, CLAUDE.md, or codebase | "Add integration test for the auth endpoint we just fixed" |
+| Scope       | Where It Lives                               | Example                                                     |
+| ----------- | -------------------------------------------- | ----------------------------------------------------------- |
+| **Global**  | `~/.pi/agent/` (AGENTS.md, skills, agents)   | "Subagent worker should always run tests before committing" |
+| **Project** | Project's `.claude/`, CLAUDE.md, or codebase | "Add integration test for the auth endpoint we just fixed"  |
 
 ## Step 4: Present Suggestions
 

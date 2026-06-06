@@ -1,6 +1,12 @@
-# Personal Pi Rules
+When working in typescript:
 
-- Be direct and evidence-first. Verify with files, commands, or docs before making claims.
-- Make the smallest correct change. Avoid unrelated refactors and speculative code.
-- Read before editing. Follow project conventions.
-- Test before claiming done.
+- when adding a package to a project add it with an install command, instead of manually editing the package json
+- run check/format/lint commands when your done making a change. if they don't exist, suggest making them for the project you're in
+- avoid explicit return types unless absolutely needed
+- `as any` should be an absolute last resort. always use real type safety. lean on type inference instead of manually writing new types over and over again
+- avoid running `dev` or `build` commands. if you really need to, ask first
+
+In general:
+
+- when asking questions, ask them one at a time
+- read the full contents of a file every time, never subsets so you don't miss important context

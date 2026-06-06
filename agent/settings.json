@@ -1,13 +1,10 @@
 {
   "lastChangelogVersion": "0.78.1",
   "defaultProvider": "opencode",
-  "defaultModel": "deepseek-v4-flash-free",
+  "defaultModel": "minimax-m3-free",
   "terminal": {
     "showTerminalProgress": true
   },
-  "collapseChangelog": false,
-  "defaultThinkingLevel": "high",
-  "editorPaddingX": 0,
   "compaction": {
     "enabled": true
   },
@@ -21,14 +18,25 @@
     "npm:pi-provider-kiro",
     "npm:pi-codex-goal",
     "npm:pi-codex-account",
-    "npm:pi-mcp-adapter"
+    "npm:pi-mcp-adapter",
+    {
+      "source": "git:github.com/fadilsflow/pi-co-authored-by@fix/current-pi-namespace",
+      "extensions": [
+        "+extensions/co-authored-by.ts"
+      ]
+    },
+    "npm:@juicesharp/rpiv-ask-user-question"
   ],
   "quietStartup": true,
-  "warnings": {
-    "anthropicExtraUsage": true
-  },
   "theme": "github-light-default",
-  "hideThinkingBlock": false,
-  "enabledModels": [],
-  "treeFilterMode": "default"
+  "treeFilterMode": "all",
+  "defaultThinkingLevel": "high",
+  "editorPaddingX": 2,
+  "steeringMode": "one-at-a-time",
+  "extensions": [
+    "+extensions/9router-provider.ts"
+  ],
+  "skills": [
+    "+skills/github-pr-summary/SKILL.md"
+  ]
 }

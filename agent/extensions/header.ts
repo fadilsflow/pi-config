@@ -11,7 +11,8 @@
 import type { ExtensionAPI, Theme } from "@earendil-works/pi-coding-agent";
 import { VERSION, keyHint, rawKeyHint } from "@earendil-works/pi-coding-agent";
 
-const ANSI_PATTERN = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)?\u0007)|(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-nq-uy=><~]))/g;
+const ANSI_PATTERN =
+  /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)?\u0007)|(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-nq-uy=><~]))/g;
 
 function visibleLength(text: string) {
   return text.replace(ANSI_PATTERN, "").length;
@@ -33,55 +34,62 @@ function centerLine(text: string, width: number) {
  * To customize, just edit the `logo` or `hints` array below.
  */
 function buildHeader(theme: Theme): string {
-    // ── Logo ──────────────────────────────────────────────
-    // Change this to whatever you want as the title line.
+  // ── Logo ──────────────────────────────────────────────
+  // Change this to whatever you want as the title line.
 
-    const ascii_art_2 = [
-        "   ███████████████████████████╗  ",
-        "   ╚══██████╔════════██████╔══╝  ",
-        "      ██████║        ██████║     ",
-        "      ██████║        ██████║     ",
-        "      ██████║        ██████║     ",
-        "      ██████║        ██████║     ",
-        "      ██████║        ██████║     ",
-        "      ██████║        ██████║     ",
-        "   ████████████╗  ████████████╗  ",
-        "   ╚═══════════╝  ╚═══════════╝  ",
-    ].map(line => theme.bold(theme.fg("success", line))).join("\n");
+  const ascii_art_2 = [
+    "   ███████████████████████████╗  ",
+    "   ╚══██████╔════════██████╔══╝  ",
+    "      ██████║        ██████║     ",
+    "      ██████║        ██████║     ",
+    "      ██████║        ██████║     ",
+    "      ██████║        ██████║     ",
+    "      ██████║        ██████║     ",
+    "      ██████║        ██████║     ",
+    "   ████████████╗  ████████████╗  ",
+    "   ╚═══════════╝  ╚═══════════╝  ",
+  ]
+    .map((line) => theme.bold(theme.fg("accent", line)))
+    .join("\n");
 
-    const logo =
-        "\n" + ascii_art_2 + "\n\n" +
-        theme.bold(theme.fg("accent", "pi")) +
-        theme.fg("dim", ` v${VERSION}`);
+  const logo =
+    "\n" +
+    ascii_art_2 +
+    "\n\n" +
+    theme.bold(theme.fg("accent", "pi")) +
+    theme.fg("dim", ` v${VERSION}`);
 
-    // ── Keybinding hints ─────────────────────────────────
-    // Each entry is one line. Remove, reorder, or add your own.
-    // Use rawKeyHint("key", "description") for app-level shortcuts.
-    // Use keyHint("editorAction", "description") for editor shortcuts.
-    const hints = [
-        rawKeyHint("escape", "to interrupt"),
-        rawKeyHint("ctrl+c", "to clear"),
-        rawKeyHint("ctrl+c twice", "to exit"),
-        rawKeyHint("ctrl+d", "to exit (empty)"),
-        rawKeyHint("ctrl+z", "to suspend"),
-        keyHint("deleteToLineEnd", "to delete to end"),
-        rawKeyHint("shift+tab", "to cycle thinking level"),
-        rawKeyHint("ctrl+p/shift+ctrl+p", "to cycle models"),
-        rawKeyHint("ctrl+l", "to select model"),
-        rawKeyHint("ctrl+o", "to expand tools"),
-        rawKeyHint("ctrl+t", "to expand thinking"),
-        rawKeyHint("ctrl+g", "for external editor"),
-        rawKeyHint("/", "for commands"),
-        rawKeyHint("!", "to run bash"),
-        rawKeyHint("!!", "to run bash (no context)"),
-        rawKeyHint("alt+enter", "to queue follow-up"),
-        rawKeyHint("alt+up", "to edit all queued messages"),
-        rawKeyHint(process.platform === "win32" ? "alt+v" : "ctrl+v", "to paste image"),
-        rawKeyHint("drop files", "to attach"),
-    ];
+  // ── Keybinding hints ─────────────────────────────────
+  // Each entry is one line. Remove, reorder, or add your own.
+  // Use rawKeyHint("key", "description") for app-level shortcuts.
+  // Use keyHint("editorAction", "description") for editor shortcuts.
+  const hints = [
+    rawKeyHint("escape", "to interrupt"),
+    rawKeyHint("ctrl+c", "to clear"),
+    rawKeyHint("ctrl+c twice", "to exit"),
+    rawKeyHint("ctrl+d", "to exit (empty)"),
+    rawKeyHint("ctrl+z", "to suspend"),
+    keyHint("deleteToLineEnd", "to delete to end"),
+    rawKeyHint("shift+tab", "to cycle thinking level"),
+    rawKeyHint("ctrl+p/shift+ctrl+p", "to cycle models"),
+    rawKeyHint("ctrl+l", "to select model"),
+    rawKeyHint("ctrl+o", "to expand tools"),
+    rawKeyHint("ctrl+t", "to expand thinking"),
+    rawKeyHint("ctrl+g", "for external editor"),
+    rawKeyHint("/", "for commands"),
+    rawKeyHint("!", "to run bash"),
+    rawKeyHint("!!", "to run bash (no context)"),
+    rawKeyHint("alt+enter", "to queue follow-up"),
+    rawKeyHint("alt+up", "to edit all queued messages"),
+    rawKeyHint(
+      process.platform === "win32" ? "alt+v" : "ctrl+v",
+      "to paste image",
+    ),
+    rawKeyHint("drop files", "to attach"),
+  ];
 
-    //return `${logo}\n${hints.join("\n")}`;
-    return logo
+  //return `${logo}\n${hints.join("\n")}`;
+  return logo;
 }
 
 export default function (pi: ExtensionAPI) {
@@ -92,7 +100,7 @@ export default function (pi: ExtensionAPI) {
       render(width: number): string[] {
         return buildHeader(theme)
           .split("\n")
-          .map((line) => (line.trim() ? centerLine(line, width) : ""));
+          .map((line) => (line.trim() ? line : ""));
       },
       invalidate() {},
     }));

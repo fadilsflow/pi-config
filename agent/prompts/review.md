@@ -1,10 +1,16 @@
 ---
-description: Review kode secara singkat
-restore: true
+description: Review current diff or supplied code
 ---
-Review kode ini seperlunya:
 
+Review the current diff or supplied code. Do not edit.
+
+Context:
 $@
 
-Cek: logic error, security issue, code smell.
-Output: list issue singkat (ada/no problem).
+Check:
+- correctness/regressions
+- security/secrets/destructive ops
+- missing validation
+- unnecessary complexity
+
+Output only actionable findings. If clean, say: No blocking issues found.
