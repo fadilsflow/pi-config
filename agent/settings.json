@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.78.1",
-  "defaultProvider": "opencode",
-  "defaultModel": "minimax-m3-free",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
   "terminal": {
     "showTerminalProgress": true
   },
@@ -19,16 +19,11 @@
     "npm:pi-codex-goal",
     "npm:pi-codex-account",
     "npm:pi-mcp-adapter",
-    {
-      "source": "git:github.com/fadilsflow/pi-co-authored-by@fix/current-pi-namespace",
-      "extensions": [
-        "+extensions/co-authored-by.ts"
-      ]
-    },
-    "npm:@juicesharp/rpiv-ask-user-question"
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:pi-zentui"
   ],
-  "quietStartup": true,
-  "theme": "github-light-default",
+  "quietStartup": false,
+  "theme": "github-dark-default",
   "treeFilterMode": "all",
   "defaultThinkingLevel": "high",
   "editorPaddingX": 2,
@@ -36,7 +31,5 @@
   "extensions": [
     "+extensions/9router-provider.ts"
   ],
-  "skills": [
-    "+skills/github-pr-summary/SKILL.md"
-  ]
+  "hideThinkingBlock": false
 }
