@@ -41,6 +41,7 @@ interface ModelsResponse {
 
 // Default models to use when fetch fails
 const FALLBACK_MODELS: string[] = [
+  "garuda-4-flash",
   "kr/claude-sonnet-4.5",
   "kr/claude-haiku-4.5",
   "kr/claude-sonnet-4.5-thinking",

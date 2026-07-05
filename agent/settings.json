@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.78.1",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
+  "lastChangelogVersion": "0.80.3",
+  "defaultProvider": "9router",
+  "defaultModel": "combowo",
   "terminal": {
     "showTerminalProgress": true
   },
@@ -15,15 +15,12 @@
     "npm:pi-web-access",
     "npm:pi-prompt-template-model",
     "npm:pi-lean-ctx",
-    "npm:pi-provider-kiro",
-    "npm:pi-codex-goal",
     "npm:pi-codex-account",
     "npm:pi-mcp-adapter",
-    "npm:@juicesharp/rpiv-ask-user-question",
-    "npm:pi-zentui"
+    "npm:pi-subagents"
   ],
   "quietStartup": false,
-  "theme": "github-dark-default",
+  "theme": "dark",
   "treeFilterMode": "all",
   "defaultThinkingLevel": "high",
   "editorPaddingX": 2,
